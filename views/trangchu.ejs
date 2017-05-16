@@ -8,37 +8,25 @@
             var socket = io('http://localhost:3000');
 
             socket.on('server-send-data', function(data) {
-                $('body').attr('bgColor', data);
+                $('#ketqua').html(data);
             });
 
             $(document).ready(function() {
-                $('#do').click(function() {
-                    socket.emit('client-send-data', 'red');
-                });
-                $('#xanh').click(function() {
-                    socket.emit('client-send-data', 'blue');
-                });
-                $('#vang').click(function() {
-                    socket.emit('client-send-data', 'yellow');
+                $('#cong').click(function() {
+                    var data = {
+                        a: $('#a').val(),
+                        b: $('#b').val()
+                    };
+                    socket.emit('client-send-data', data);
                 });
             });
 
         </script>
-
-        <style type="text/css">
-            #do, #xanh, #vang {
-                width: 300px;
-                height: 50px;
-            }
-            #do { background-color: red }
-            #xanh { background-color: blue }
-            #vang { background-color: yellow }
-        </style>
-
     </head>
     <body>
-        <div id="do"></div>
-        <div id="xanh"></div>
-        <div id="vang"></div>
+        <input type="number" name="a" id="a" />
+        <input type="number" name="b" id="b" />
+        <button type="button" id="cong">Cong</button>
+        <h2 id="ketqua"></h2>
     </body>
 </html>

@@ -17,7 +17,8 @@ io.on('connection', function(socket) {
 
     socket.on('client-send-data', function(data) {
         console.log(data);
-        io.sockets.emit('server-send-data', data);
+        var kq = parseInt(data.a) + parseInt(data.b);
+        io.sockets.emit('server-send-data', kq);
     });
 
 });
